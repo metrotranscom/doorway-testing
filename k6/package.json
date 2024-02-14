@@ -1,0 +1,11 @@
+{
+  "name": "k6",
+  "version": "1.0.0",
+  "description": "K6 tests for API smoke, load and stress testing",
+  "main": "api-test.js",
+  "author": "Glenn Brown",
+  "license": "MIT",
+  "dependencies": {
+    "k6": "^0.0.0"
+  }
+}
