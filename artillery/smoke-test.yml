@@ -33,7 +33,7 @@ scenarios:
     weight: 6
     flow:
       - get:
-          url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
+          url: /listings/
           expect:
             - statusCode: 200
         capture:
