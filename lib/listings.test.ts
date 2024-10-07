@@ -1,11 +1,7 @@
-import { Listing } from "./Api";
-
+import { Listing } from "./apioutput";
 import { ListingsInterface } from "./listings";
-
 import { startDoorway } from "./mockDoorway";
-
 beforeAll(() => startDoorway());
-
 describe("Get All Listings", () => {
   test("Successful Run", async () => {
     const url = "https://doorway";
@@ -47,7 +43,6 @@ describe("Get All Listings", () => {
       const password = "goodpassword";
       let li = new ListingsInterface(user, password, url, passkey);
       const listing = await li.listingMatcher("827 Cerrito");
-
       expect(listing.name).toContain("Little Village");
     });
     test("Returns successful search based on address", async () => {
@@ -59,7 +54,6 @@ describe("Get All Listings", () => {
       const listing = await li.listingMatcher("327 Cerrito");
       expect(listing.name).toContain("Little Village");
     });
-
     //   // test("Throws exception on unrecognizable result", async () => {
     //   //   async function thisShouldFail() {
     //   //     const url = "https://doorway";

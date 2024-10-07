@@ -14,7 +14,7 @@ import {
   IncomePeriodEnum,
   LanguagesEnum,
   ListingMultiselectQuestion,
-} from "../Api";
+} from "../apioutput";
 export class FakeApplication implements ApplicationCreate {
   acceptedTerms?: boolean;
   language?: LanguagesEnum;
@@ -44,21 +44,35 @@ export class FakeApplication implements ApplicationCreate {
   sendMailToMailingAddress?: boolean;
   constructor(listingId: string, prefs: ListingMultiselectQuestion[]) {
     const totalPrefs = prefs.length;
-    const selectedPrefs = faker.number.int({ min: 0, max: totalPrefs });
+    const hasPrefs = faker.number.int({ min: 0, max: 100 });
     const appPrefs: ApplicationMultiselectQuestion[] = [];
-    for (var i = 0; i < totalPrefs; i++) {
-      const listingPref = prefs[i];
-      if (appPrefs.length < selectedPrefs) {
-        appPrefs.push({
-          multiselectQuestionId: listingPref.multiselectQuestions.id,
-          claimed: true,
-          key: listingPref.multiselectQuestions.text,
-          options: [{ key: "Yep", checked: true }],
-        });
+    //basially just giving 30% of applicants some preferences
+    if (hasPrefs > 70) {
+      const selectedPrefs = faker.number.int({ min: 0, max: totalPrefs });
+      for (var i = 0; i < totalPrefs; i++) {
+        const listingPref = prefs[i];
+        if (appPrefs.length < selectedPrefs) {
+          appPrefs.push({
+            multiselectQuestionId: listingPref.multiselectQuestions.id,
+            claimed: true,
+            key: listingPref.multiselectQuestions.text,
+            options: [
+              {
+                key: listingPref.multiselectQuestions.options![0].text,
+                checked: true,
+              },
+            ],
+          });
+        }
       }
     }
     this.status = ApplicationStatusEnum.Submitted;
-    this.submissionType = ApplicationSubmissionTypeEnum.Paper;
+    const isItPaper = faker.number.int({ min: 0, max: 100 });
+    // Estimating 1% of applications to be paper
+    this.submissionType =
+      isItPaper > 99
+        ? ApplicationSubmissionTypeEnum.Paper
+        : ApplicationSubmissionTypeEnum.Electronical;
     this.additionalPhone = false;
     this.additionalPhoneNumber = faker.string.numeric({ length: 10 });
     this.additionalPhoneNumberType = "home";
@@ -73,7 +87,9 @@ export class FakeApplication implements ApplicationCreate {
       birthYear: birthday.getFullYear().toString(),
       phoneNumber: faker.string.numeric({ length: 10 }),
       phoneNumberType: "cell",
-      emailAddress: "this@that.com",
+      emailAddress: `${faker.person.firstName()}.${faker.person.firstName()}@${faker.company
+        .buzzNoun()
+        .replace(" ", "")}.com`,
       applicantAddress: {
         city: faker.person.lastName(),
         street: `${faker.string.numeric({

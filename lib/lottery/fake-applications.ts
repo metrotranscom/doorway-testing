@@ -31,7 +31,7 @@ export class DoorwayFakeApplications {
     axios.defaults.withCredentials = true;
     const tokens = await this.doorwayLogin.login();
     this.logger.info(
-      `Submitting application for listing ${application.listings.id}`
+      `Submitting application for listing ${application.listings.id}`,
     );
     this.logger.info(application);
     const response = axios.post(this.url, application, {
@@ -44,7 +44,7 @@ export class DoorwayFakeApplications {
   }
   isValid(application: object): boolean {
     const appSchema = JSON.parse(
-      fs.readFileSync("./lib/handler-functions/applicationSchema.json", "utf8")
+      fs.readFileSync("./lib/handler-functions/applicationSchema.json", "utf8"),
     );
     const validator = new Validator();
     const result = validator.validate(application, appSchema);

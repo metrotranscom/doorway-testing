@@ -1,0 +1,280 @@
+{
+  "additionalPhone": false,
+  "additionalPhoneNumber": "",
+  "additionalPhoneNumberType": "home",
+  "contactPreferences": ["email"],
+  "householdSize": 5,
+  "sendMailToMailingAddress": false,
+  "householdExpectingChanges": false,
+  "householdStudent": false,
+  "incomeVouchers": ["rentalAssistance"],
+  "income": "6850",
+  "incomePeriod": "perMonth",
+  "status": "submitted",
+  "language": "en",
+  "acceptedTerms": true,
+  "submissionType": "paper",
+  "submissionDate": "Tue, 01 Oct 2024 23:41:23 GMT",
+  "receivedBy": "k6",
+  "receivedAt": "Tue, 01 Oct 2024 23:41:23 GMT",
+  "listings": { "id": "e1efdce2-8109-4d9f-8369-d30df976be24" },
+  "applicant": {
+    "firstName": "gtfqtfqj",
+    "middleName": "tghoaiii",
+    "lastName": "puqrnioy",
+    "birthMonth": "8",
+    "birthDay": "21",
+    "birthYear": "1967",
+    "emailAddress": "testsexa85539@example.com",
+    "noEmail": false,
+    "phoneNumber": "510-609-3882",
+    "phoneNumberType": "cell",
+    "noPhone": false,
+    "workInRegion": "yes",
+    "applicantAddress": {
+      "city": "Anytown",
+      "state": "CA",
+      "street": "6626 Main St",
+      "street2": "",
+      "zipCode": "32997"
+    },
+    "applicantWorkAddress": {
+      "city": "Anytown",
+      "state": "CA",
+      "street": "535 Main St",
+      "street2": "",
+      "zipCode": "21602"
+    }
+  },
+  "applicationsMailingAddress": {
+    "city": "Anytown",
+    "state": "CA",
+    "street": "6626 Main St",
+    "street2": "",
+    "zipCode": "32997"
+  },
+  "applicationsAlternateAddress": {
+    "city": "Anytown",
+    "state": "CA",
+    "street": "535 Main St",
+    "street2": "",
+    "zipCode": "21602"
+  },
+  "alternateContact": {
+    "type": "familyMember",
+    "firstName": "yxxqbkgx",
+    "lastName": "vwvhtotf",
+    "phoneNumber": "510-921-7175",
+    "emailAddress": "testzyto55988@example.com",
+    "address": {
+      "city": "Anytown",
+      "state": "CA",
+      "street": "6518 Main St",
+      "street2": "",
+      "zipCode": "89511"
+    }
+  },
+  "accessibility": { "mobility": true, "vision": false, "hearing": false },
+  "householdMember": [
+    {
+      "firstName": "yohnlwjd",
+      "middleName": "adobkjld",
+      "lastName": "nafbqflz",
+      "birthMonth": "7",
+      "birthDay": "21",
+      "birthYear": "1995",
+      "emailAddress": "testcrqw68430@example.com",
+      "noEmail": false,
+      "phoneNumber": "",
+      "phoneNumberType": "home",
+      "noPhone": true,
+      "householdMemberAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameAddress": "yes",
+      "mailingAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameMailingAddress": true,
+      "relationship": "other"
+    },
+    {
+      "firstName": "odfqbvev",
+      "middleName": "fyayrxyq",
+      "lastName": "sqysdazp",
+      "birthMonth": "11",
+      "birthDay": "22",
+      "birthYear": "1901",
+      "emailAddress": "",
+      "noEmail": true,
+      "phoneNumber": "510-731-2117",
+      "phoneNumberType": "home",
+      "noPhone": false,
+      "householdMemberAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameAddress": "yes",
+      "mailingAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameMailingAddress": true,
+      "relationship": "other"
+    },
+    {
+      "firstName": "illhmsqm",
+      "middleName": "exrhavmu",
+      "lastName": "pbyifoyz",
+      "birthMonth": "10",
+      "birthDay": "23",
+      "birthYear": "1971",
+      "emailAddress": "",
+      "noEmail": true,
+      "phoneNumber": "",
+      "phoneNumberType": "home",
+      "noPhone": true,
+      "householdMemberAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameAddress": "yes",
+      "mailingAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameMailingAddress": true,
+      "relationship": "other"
+    },
+    {
+      "firstName": "rzdqlkmv",
+      "middleName": "ecbxsstu",
+      "lastName": "fxhxmole",
+      "birthMonth": "1",
+      "birthDay": "13",
+      "birthYear": "1963",
+      "emailAddress": "testncsw33111@example.com",
+      "noEmail": false,
+      "phoneNumber": "",
+      "phoneNumberType": "home",
+      "noPhone": true,
+      "householdMemberAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameAddress": "yes",
+      "mailingAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameMailingAddress": true,
+      "relationship": "other"
+    },
+    {
+      "firstName": "fbsieffb",
+      "middleName": "xmwsnytg",
+      "lastName": "mgrginfl",
+      "birthMonth": "5",
+      "birthDay": "17",
+      "birthYear": "2004",
+      "emailAddress": "",
+      "noEmail": true,
+      "phoneNumber": "510-604-7408",
+      "phoneNumberType": "home",
+      "noPhone": false,
+      "householdMemberAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameAddress": "yes",
+      "mailingAddress": {
+        "placeName": "",
+        "city": "",
+        "county": "",
+        "state": "",
+        "street": "",
+        "street2": "",
+        "zipCode": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "sameMailingAddress": true,
+      "relationship": "other"
+    }
+  ],
+  "preferredUnitTypes": [],
+  "preferences": [
+    {
+      "key": "Live and Work in the City of Santa Clara",
+      "checked": true,
+      "options": [
+        { "key": "Live and Work in the City of Santa Clara", "checked": true }
+      ]
+    }
+  ]
+}

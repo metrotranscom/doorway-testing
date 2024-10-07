@@ -1,0 +1,41 @@
+config:
+  # This is a test server run by team Artillery
+  # It's designed to be highly scalable
+  target: https://backend.dev.housingbayarea.mtc.ca.gov
+  phases:
+    - duration: 300
+      arrivalRate: 1
+      name: Warm up phase
+    # - duration: 60
+    #   arrivalRate: 5
+    #   rampTo: 10
+    #   name: Ramp up load
+    # - duration: 30
+    #   arrivalRate: 10
+    #   rampTo: 30
+    #   name: Spike phase
+  # Load & configure a couple of useful plugins
+  # https://docs.art/reference/extensions
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+    expect: {}
+  apdex:
+    threshold: 100
+  ensure:
+    thresholds:
+      - http.response_time.p99: 2000
+      - http.response_time.p95: 1000
+scenarios:
+  - flow:
+      - loop:
+          - get:
+              url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
+              expect:
+                - statusCode: 200
+              capture:
+                json: $
+                as: listings
+          - log: "{ { listings } }"
+        count: 1

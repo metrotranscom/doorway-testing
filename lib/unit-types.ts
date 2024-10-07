@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UnitType } from "./Api";
+import { UnitType } from "./apioutput";
 import { DoorwayLogin } from "./doorway-login";
 import { instance } from "./winston.logger";
 export class UnitTypeService {

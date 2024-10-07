@@ -1,4 +1,4 @@
-import { Listing } from "./Api";
+import { Listing } from "./apioutput";
 import { DoorwayInterface } from "./doorway-interface";
 import { startDoorway } from "./mockDoorway";
 beforeAll(() => {

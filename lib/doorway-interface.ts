@@ -50,6 +50,34 @@ export class DoorwayInterface {
     }
     return data!;
   }
+  async delete(endpoint: string, query?: object): Promise<void> {
+    this.logger.info("Logging into Doorway");
+    try {
+      const tokens = await this.doorwayLogin.login();
+      const getURL = `${this.url}${endpoint}`;
+      axios.defaults.withCredentials = true;
+      try {
+        const response = await axios.delete(getURL, {
+          headers: {
+            Cookie: `${tokens["accessToken"]};${tokens["refreshToken"]}`,
+          },
+          data: query != undefined ? query : "",
+        });
+      } catch (getError) {
+        if (axios.isAxiosError(getError)) {
+          this.logger.error(
+            `Get from ${getURL} failed with an error code of ${getError.code}`,
+          );
+          this.logger.error(getError.message);
+          throw getError;
+        }
+      }
+    } catch (error) {
+      this.logger.error("Problems logging into Doorway!");
+      this.logger.error(error);
+      throw error;
+    }
+  }
   async binaryGet(
     endpoint: string,
     query?: object,
