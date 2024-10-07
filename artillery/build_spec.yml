@@ -1,0 +1,13 @@
+# AWS CodeBuild config
+# This file is referenced in the infra repo as a CodeBuild buildspec target.
+# These variables are set in the codebuild project definition's environment secion.
+# ECR_*
+version: 0.2
+env:
+  shell: bash
+phases:
+  build:
+    commands:
+      - export NODE_OPTIONS="--max_old_space_size=10240"
+      - npm install -g artillery
+      - artillery run-fargate --region us-west-1  --subnet-ids subnet-01c1a100bd3c80d82 smoke-test.yml
