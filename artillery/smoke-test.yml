@@ -1,7 +1,8 @@
 config:
   # This is a test server run by team Artillery
   # It's designed to be highly scalable
-  target: http://backend.dev.housingbayarea.int
+  # target: http://backend.dev.housingbayarea.int
+  target: https://backend.dev.housingbayarea.mtc.ca.gov
   phases:
     - duration: 300
       arrivalRate: 1
@@ -28,14 +29,25 @@ config:
       - http.response_time.p99: 2000
       - http.response_time.p95: 1000
 scenarios:
-  - flow:
-      - loop:
-          - get:
-              url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
-              expect:
-                - statusCode: 200
-              capture:
-                json: $
-                as: listings
-          - log: "{ { listings } }"
-        count: 1
+  - name: Get all listings
+    weight: 6
+    flow:
+      - get:
+          url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
+          expect:
+            - statusCode: 200
+        capture:
+          json: $
+          as: listings
+      - log: "{ { listings } }"
+  - name: Get listing that was just released
+    weight: 4
+    flow:
+      - get:
+          url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
+          expect:
+            - statusCode: 200
+        capture:
+          json: $
+          as: listings
+      - log: "{ { listing } }"
