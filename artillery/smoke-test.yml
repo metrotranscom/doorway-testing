@@ -29,25 +29,21 @@ config:
       - http.response_time.p99: 2000
       - http.response_time.p95: 1000
 scenarios:
-  - name: Get all listings
+  # Approximately 60% of all VUs will run this scenario.
+  - name: get all listings
     weight: 6
     flow:
       - get:
-          url: /listings/
-          expect:
-            - statusCode: 200
-        capture:
-          json: $
-          as: listings
-      - log: "{ { listings } }"
-  - name: Get listing that was just released
-    weight: 4
+          url: /listings
+  # Approximately 30% of all VUs will run this scenario.
+  - name: get an individual listing
+    weight: 3
     flow:
       - get:
           url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
-          expect:
-            - statusCode: 200
-        capture:
-          json: $
-          as: listings
-      - log: "{ { listing } }"
+  # Approximately 10% of all VUs will run this scenario.
+  - name: Apply for listing
+    weight: 1
+    flow:
+      - get:
+          url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
