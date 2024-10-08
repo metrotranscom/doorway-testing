@@ -7,6 +7,13 @@ config:
     - duration: 300
       arrivalRate: 1
       name: Warm up phase
+    - duration: 1h
+      arrivalRate: 2
+      name: First Hour
+    - duration: 6h
+      arrivalRate: 3
+      name: Bulk of test
+
     # - duration: 60
     #   arrivalRate: 5
     #   rampTo: 10
@@ -22,6 +29,7 @@ config:
     apdex: {}
     metrics-by-endpoint: {}
     expect: {}
+    fake-data: {}
   apdex:
     threshold: 100
   ensure:
@@ -47,3 +55,93 @@ scenarios:
     flow:
       - get:
           url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
+      # - post:
+      #     url: /applications
+      #     capture:
+      #       json: $
+      #       as: body
+      #     log: '{{ body }}'
+      #     json:
+      #       additionalPhone: false
+      #       contactPreferences:
+      #         - email
+      #       status: submitted
+      #       language: en
+      #       acceptedTerms: true
+      #       submissionType: electronical
+      #       listings:
+      #         - { id: e1efdce2-8109-4d9f-8369-d30df976be24 }
+      #       applicant: {
+      #         firstName: '{{ $randFirstName() }}',
+      #         middleName: '{{ $randFirstName() }}',
+      #         lastName: '{{ $randLastName() }}',
+      #         birthMonth: '{{ $randNumber(1,12) }}',
+      #         birthDay: '{{ $randNumber(1,28) }}',
+      #         birthYear: '{{ $randNumber(1950,2024) }}',
+      #         noEmail: false,
+      #         noPhone: false,
+      #         workInRegion: yes,
+      #         emailAddress: '{{ $randEmail() }}',
+      #         phoneNumber:  '510524{{ $randNumber(1000,9999) }}',
+      #         phoneNumberType: cell,
+      #         applicantAddress: {
+      #           street: '{{ $randStreetAddress() }}',
+      #           city: '{{ $randCity() }}',
+      #           state: CA,
+      #           zipCode: '{{ $randZipCode() }}'
+      #         },
+      #         mailingSameAsResidential: true,
+      #         applicantWorkAddress: {
+      #           street: '{{ $randStreetAddress() }}',
+      #           city: '{{ $randCity() }}',
+      #           state: CA,
+      #           zipCode: '{{ $randZipCode() }}'
+      #         }
+      #       }
+      #       income: '{{ $randNumber(0,10000) }}'
+      #       incomePeriod: perMonth
+      #       householdSize: 5
+      #       householdExpectingChanges: false
+      #       householdStudent: false
+      #       householdIncomeVouchers:
+      #         - rentalAssistance
+      #       sendMailToMailingAddress: false
+      #       alternateContact: {
+      #         firstName: '{{ $randFirstName() }}',
+      #         lastName: '{{ $randLastName() }}',
+      #         phoneNumber: '510524{{ $randNumber(1000,9999) }}',
+      #         emailAddress: '{{ $randEmail() }}',
+      #         type: familyMember,
+      #         address: {
+      #           street: '{{ $randStreetAddress() }}',
+      #           city: '{{ $randCity() }}',
+      #           state: CA,
+      #           zipCode: '{{ $randZipCode() }}'
+      #         }
+      #       }
+      #       accessibility: {
+      #         mobility: false,
+      #         vision: false,
+      #         hearing: false
+      #       }
+      #       householdMembers:
+      #         - {
+      #           firstName: '{{ $randFirstName() }}',
+      #           middleName: '{{ $randFirstName() }}',
+      #           lastName: '{{ $randLastName() }}',
+      #           birthMonth: '{{ $randNumber(1,12) }}',
+      #           birthDay: '{{ $randNumber(1,28) }}',
+      #           birthYear: '{{ $randNumber(1950,2024) }}',
+      #           workInRegion: yes,
+      #           householdMemberAddress: {
+      #             city: '',
+      #             county: '',
+      #             state: '',
+      #             street: '',
+      #             street2: '',
+      #             zipCode: ''
+      #           },
+      #           sameMailingAddress: true,
+      #           relationship: other,
+      #         }
+      #       preferences: []
