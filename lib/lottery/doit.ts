@@ -2,9 +2,9 @@ import { faker } from "@faker-js/faker";
 import * as dotenv from "dotenv";
 import { Application, ApplicationSubmissionTypeEnum } from "../apioutput";
 import { DoorwayInterface } from "../doorway-interface";
+import { FakeApplication } from "../fake-application";
+import { DoorwayFakeApplications } from "../fake-applications";
 import { ListingsInterface } from "../listings";
-import { FakeApplication } from "./fake-application";
-import { DoorwayFakeApplications } from "./fake-applications";
 async function sendthem() {
   dotenv.config();
   const applicationCount = 1000;

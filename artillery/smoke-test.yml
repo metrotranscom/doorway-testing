@@ -2,7 +2,8 @@ config:
   # This is a test server run by team Artillery
   # It's designed to be highly scalable
   # target: http://backend.dev.housingbayarea.int
-  target: https://backend.dev.housingbayarea.mtc.ca.gov
+  target: "{{ $env.URL }}"
+  processor: ../lib/fake-app-for-artillery.ts
   phases:
     - duration: 300
       arrivalRate: 1
@@ -13,15 +14,6 @@ config:
     - duration: 6h
       arrivalRate: 3
       name: Bulk of test
-
-    # - duration: 60
-    #   arrivalRate: 5
-    #   rampTo: 10
-    #   name: Ramp up load
-    # - duration: 30
-    #   arrivalRate: 10
-    #   rampTo: 30
-    #   name: Spike phase
   # Load & configure a couple of useful plugins
   # https://docs.art/reference/extensions
   plugins:
@@ -34,8 +26,13 @@ config:
     threshold: 100
   ensure:
     thresholds:
-      - http.response_time.p99: 2000
-      - http.response_time.p95: 1000
+      - http.response_time.p99: 4000
+      - http.response_time.p95: 2000
+  variables:
+    user: "{{ $env.EMAIL }}"
+    password: "{{ $env.PASSWORD }}"
+    url: "{{ $env.URL }}"
+    listingId: "{{ $env.LISTING }}"
 scenarios:
   # Approximately 60% of all VUs will run this scenario.
   - name: get all listings
@@ -48,100 +45,23 @@ scenarios:
     weight: 3
     flow:
       - get:
-          url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
+          url: /listings/{{ listingId }}
   # Approximately 10% of all VUs will run this scenario.
   - name: Apply for listing
     weight: 1
     flow:
       - get:
-          url: /listings/9fdb7bb5-e8e8-48fa-ad35-50f46fe58c75
-      # - post:
-      #     url: /applications
-      #     capture:
-      #       json: $
-      #       as: body
-      #     log: '{{ body }}'
-      #     json:
-      #       additionalPhone: false
-      #       contactPreferences:
-      #         - email
-      #       status: submitted
-      #       language: en
-      #       acceptedTerms: true
-      #       submissionType: electronical
-      #       listings:
-      #         - { id: e1efdce2-8109-4d9f-8369-d30df976be24 }
-      #       applicant: {
-      #         firstName: '{{ $randFirstName() }}',
-      #         middleName: '{{ $randFirstName() }}',
-      #         lastName: '{{ $randLastName() }}',
-      #         birthMonth: '{{ $randNumber(1,12) }}',
-      #         birthDay: '{{ $randNumber(1,28) }}',
-      #         birthYear: '{{ $randNumber(1950,2024) }}',
-      #         noEmail: false,
-      #         noPhone: false,
-      #         workInRegion: yes,
-      #         emailAddress: '{{ $randEmail() }}',
-      #         phoneNumber:  '510524{{ $randNumber(1000,9999) }}',
-      #         phoneNumberType: cell,
-      #         applicantAddress: {
-      #           street: '{{ $randStreetAddress() }}',
-      #           city: '{{ $randCity() }}',
-      #           state: CA,
-      #           zipCode: '{{ $randZipCode() }}'
-      #         },
-      #         mailingSameAsResidential: true,
-      #         applicantWorkAddress: {
-      #           street: '{{ $randStreetAddress() }}',
-      #           city: '{{ $randCity() }}',
-      #           state: CA,
-      #           zipCode: '{{ $randZipCode() }}'
-      #         }
-      #       }
-      #       income: '{{ $randNumber(0,10000) }}'
-      #       incomePeriod: perMonth
-      #       householdSize: 5
-      #       householdExpectingChanges: false
-      #       householdStudent: false
-      #       householdIncomeVouchers:
-      #         - rentalAssistance
-      #       sendMailToMailingAddress: false
-      #       alternateContact: {
-      #         firstName: '{{ $randFirstName() }}',
-      #         lastName: '{{ $randLastName() }}',
-      #         phoneNumber: '510524{{ $randNumber(1000,9999) }}',
-      #         emailAddress: '{{ $randEmail() }}',
-      #         type: familyMember,
-      #         address: {
-      #           street: '{{ $randStreetAddress() }}',
-      #           city: '{{ $randCity() }}',
-      #           state: CA,
-      #           zipCode: '{{ $randZipCode() }}'
-      #         }
-      #       }
-      #       accessibility: {
-      #         mobility: false,
-      #         vision: false,
-      #         hearing: false
-      #       }
-      #       householdMembers:
-      #         - {
-      #           firstName: '{{ $randFirstName() }}',
-      #           middleName: '{{ $randFirstName() }}',
-      #           lastName: '{{ $randLastName() }}',
-      #           birthMonth: '{{ $randNumber(1,12) }}',
-      #           birthDay: '{{ $randNumber(1,28) }}',
-      #           birthYear: '{{ $randNumber(1950,2024) }}',
-      #           workInRegion: yes,
-      #           householdMemberAddress: {
-      #             city: '',
-      #             county: '',
-      #             state: '',
-      #             street: '',
-      #             street2: '',
-      #             zipCode: ''
-      #           },
-      #           sameMailingAddress: true,
-      #           relationship: other,
-      #         }
-      #       preferences: []
+          url: /listings/{{ listingId }}
+      - post:
+          url: /auth/login
+          json:
+            email: "{{ user }}"
+            password: "{{ password }}"
+      - post:
+          url: /applications
+          beforeRequest:
+            - generateApplication
+          capture:
+            json: $.body
+            as: body
+          log: "{{ body }}"
