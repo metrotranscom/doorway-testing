@@ -15,7 +15,7 @@ phases:
       - npm install -g artillery
       - yarn install
       - yarn build
-      - artillery run-fargate --region us-west-1 --dotenv artillery/dev.env --subnet-ids subnet-01c1a100bd3c80d82 -o ./artillery.json artillery/smoke-test.yml
+      - artillery run  --dotenv artillery/dev.env -o ./artillery.json artillery/smoke-test.yml
 artifacts:
   files:
     - "**/artillery.json"
