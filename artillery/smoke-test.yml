@@ -5,17 +5,17 @@ config:
   target: "{{ $env.URL }}"
   processor: ../lib/fake-app-for-artillery.ts
   phases:
-    - duration: 300
+    - duration: 30
       arrivalRate: 1
       name: Warm up phase
-    - duration: 1h
-      arrivalRate: 2
-      name: First Hour
-    - duration: 6h
-      arrivalRate: 3
-      name: Bulk of test
-  # Load & configure a couple of useful plugins
-  # https://docs.art/reference/extensions
+  #   - duration: 1h
+  #     arrivalRate: 2
+  #     name: First Hour
+  #   - duration: 6h
+  #     arrivalRate: 3
+  #     name: Bulk of test
+  # # Load & configure a couple of useful plugins
+  # # https://docs.art/reference/extensions
   plugins:
     ensure: {}
     apdex: {}
@@ -36,27 +36,35 @@ config:
 scenarios:
   # Approximately 60% of all VUs will run this scenario.
   - name: get all listings
-    weight: 6
+    weight: 5
     flow:
       - get:
           url: /listings
+          expect:
+            - statusCode: 200
   # Approximately 30% of all VUs will run this scenario.
   - name: get an individual listing
-    weight: 3
+    weight: 4
     flow:
       - get:
           url: /listings/{{ listingId }}
+          expect:
+            - statusCode: 200
   # Approximately 10% of all VUs will run this scenario.
   - name: Apply for listing
-    weight: 1
+    weight: 2
     flow:
       - get:
           url: /listings/{{ listingId }}
+          expect:
+            - statusCode: 200
       - post:
           url: /auth/login
           json:
             email: "{{ user }}"
             password: "{{ password }}"
+            expect:
+              - statusCode: 200
       - post:
           url: /applications
           beforeRequest:
@@ -65,3 +73,5 @@ scenarios:
             json: $.body
             as: body
           log: "{{ body }}"
+          expect:
+            - statusCode: 201
