@@ -1,5 +1,5 @@
 {
-  "name": "doorway-testing",
+  "name": "doorway-test-scripts",
   "main": "k6",
   "version": "0.1.0",
   "scripts": {

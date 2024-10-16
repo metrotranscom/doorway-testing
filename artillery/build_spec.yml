@@ -13,9 +13,10 @@ phases:
     commands:
       - export NODE_OPTIONS="--max_old_space_size=10240"
       - npm install -g artillery
+      - cd artillery
       - yarn install
       - yarn build
-      - artillery run-fargate  --dotenv artillery/dev.env -o ./artillery.json artillery/smoke-test.yml
+      - artillery run-fargate  --dotenv dev.env -o ./artillery.json smoke-test.yml
 artifacts:
   files:
     - "**/artillery.json"
