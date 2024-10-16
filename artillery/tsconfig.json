@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
-    "rootDir": "test-scripts/lib",
+    "rootDir": "lib",
     "target": "ES2020",
     "module": "CommonJS",
     "lib": ["ES2020", "DOM"],

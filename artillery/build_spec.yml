@@ -15,6 +15,7 @@ phases:
       - npm install -g artillery
       - cd artillery
       - yarn install
+      - yarn build
       - artillery run-fargate  --dotenv dev.env -o ./artillery.json smoke-test.yml
 artifacts:
   files:
