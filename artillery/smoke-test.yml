@@ -5,9 +5,9 @@ config:
   target: "{{ $env.URL }}"
   processor: lib/fake-app-for-artillery.ts
   phases:
-    - duration: 30
-      arrivalRate: 1
-      name: Warm up phase
+    - duration: 3600
+      arrivalRate: 10
+      name: Spike test
   #   - duration: 1h
   #     arrivalRate: 2
   #     name: First Hour
