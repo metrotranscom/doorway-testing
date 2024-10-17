@@ -16,7 +16,7 @@ phases:
       - cd artillery
       - npm install
       - npm run build
-      - artillery run-fargate  --dotenv dev.env --region us-west-1 --subnet-ids subnet-0672e2f14ebf58064 -o ./artillery.json smoke-test.yml
+      - artillery run-fargate  --dotenv dev.env --region us-west-1 --subnet-ids subnet-0ba287ccccfe832e7 -o ./artillery.json smoke-test.yml
 artifacts:
   files:
     - "**/artillery.json"
