@@ -4,10 +4,21 @@ config:
   # target: http://backend.dev.housingbayarea.int
   target: "{{ $env.URL }}"
   processor: lib/fake-app-for-artillery.ts
+  payload:
+    path: 'users.csv'
+    fields:
+      - 'email'
+      - 'password'
   phases:
     - duration: 3600
       arrivalRate: 10
-      name: Spike test
+      name: Normal Load for Listing Release
+    - duration: 3600
+      arrivalRate: 20
+      name: Double the load
+    - duration: 3600
+      arrivalRate: 30
+      name: triple the load
   #   - duration: 1h
   #     arrivalRate: 2
   #     name: First Hour
@@ -29,8 +40,6 @@ config:
       - http.response_time.p99: 4000
       - http.response_time.p95: 2000
   variables:
-    user: "{{ $env.EMAIL }}"
-    password: "{{ $env.PASSWORD }}"
     url: "{{ $env.URL }}"
     listingId: "{{ $env.LISTING }}"
 scenarios:
@@ -61,7 +70,7 @@ scenarios:
       - post:
           url: /auth/login
           json:
-            email: "{{ user }}"
+            email: "{{ email }}"
             password: "{{ password }}"
             expect:
               - statusCode: 200
