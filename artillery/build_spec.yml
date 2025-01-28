@@ -16,7 +16,7 @@ phases:
       - cd artillery
       - npm install
       - npm run build
-      - artillery run  --dotenv dev.env  -o ./artillery.json stress-test.yml
+      - artillery run-fargate --region us-west-1  --dotenv dev.env  -o ./artillery.json stress-test.yml
 artifacts:
   files:
     - "**/artillery.json"
