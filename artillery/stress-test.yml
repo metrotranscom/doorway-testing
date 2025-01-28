@@ -5,20 +5,20 @@ config:
   target: "{{ $env.URL }}"
   processor: lib/fake-app-for-artillery.ts
   payload:
-    path: 'users.csv'
+    path: "users.csv"
     fields:
-      - 'email'
-      - 'password'
+      - "email"
+      - "password"
   phases:
     - duration: 3600
       arrivalRate: 10
       name: Normal Load for Listing Release
-    - duration: 3600
-      arrivalRate: 20
-      name: Double the load
-    - duration: 3600
-      arrivalRate: 30
-      name: triple the load
+    # - duration: 3600
+    #   arrivalRate: 20
+    #   name: Double the load
+    # - duration: 3600
+    #   arrivalRate: 30
+    #   name: triple the load
   #   - duration: 1h
   #     arrivalRate: 2
   #     name: First Hour
@@ -48,7 +48,7 @@ scenarios:
     weight: 5
     flow:
       - get:
-          url: /listings
+          url: /listings/list
           expect:
             - statusCode: 200
   # Approximately 30% of all VUs will run this scenario.

@@ -8,7 +8,7 @@ import { ListingsInterface } from "../listings";
 async function sendthem() {
   dotenv.config();
   const applicationCount = 1000;
-  const listingId = "faee955f-5bf4-4032-947a-f86b944ae4eb";
+  const listingId = "a6ee82af-1f00-4999-8f14-d2b2abdae57a";
   const url =
     process.env.DOORWAY_URL != undefined ? process.env.DOORWAY_URL : "EMPTY";
   const user =
@@ -42,7 +42,7 @@ async function sendthem() {
           : ApplicationSubmissionTypeEnum.Electronical;
       await doorway.submit(app);
     }
-    setTimeout(() => {}, 1000);
+    setTimeout(() => { }, 1000);
   }
 }
 async function deletethem() {
@@ -71,7 +71,7 @@ async function deletethem() {
   for (var i = 0; i < apps.length; i++) {
     console.log(apps[i].id);
     doorway.delete(`/applications`, { id: apps[i].id });
-    setTimeout(() => {}, 1000);
+    setTimeout(() => { }, 1000);
   }
 }
 sendthem().then(() => {
