@@ -11,7 +11,7 @@ config:
       - "password"
   phases:
     - duration: 30
-      arrivalRate: 10
+      arrivalRate: 1
       name: Normal Load for Listing Release
     # - duration: 3600
     #   arrivalRate: 20
