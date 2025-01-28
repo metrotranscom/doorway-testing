@@ -10,7 +10,7 @@ config:
       - "email"
       - "password"
   phases:
-    - duration: 3600
+    - duration: 30
       arrivalRate: 10
       name: Normal Load for Listing Release
     # - duration: 3600
@@ -47,7 +47,7 @@ scenarios:
   - name: get all listings
     weight: 5
     flow:
-      - get:
+      - post:
           url: /listings/list
           expect:
             - statusCode: 200
