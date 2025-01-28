@@ -50,7 +50,7 @@ scenarios:
       - post:
           url: /listings/list
           expect:
-            - statusCode: 200
+            - statusCode: 201
   # Approximately 30% of all VUs will run this scenario.
   - name: get an individual listing
     weight: 4
