@@ -10,8 +10,9 @@ config:
       - "email"
       - "password"
   phases:
-    - duration: 30
-      arrivalRate: 1
+    - duration: 300
+      arrivalRate: 10
+      maxVusers: 10
       name: Normal Load for Listing Release
     # - duration: 3600
     #   arrivalRate: 20
