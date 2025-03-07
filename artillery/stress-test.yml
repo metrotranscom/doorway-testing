@@ -11,21 +11,21 @@ config:
       - "password"
   phases:
     - duration: 300
-      arrivalRate: 10
+      arrivalRate: 1
       maxVusers: 10
       name: Normal Load for Listing Release
-    # - duration: 3600
-    #   arrivalRate: 20
-    #   name: Double the load
-    # - duration: 3600
-    #   arrivalRate: 30
-    #   name: triple the load
-  #   - duration: 1h
-  #     arrivalRate: 2
-  #     name: First Hour
-  #   - duration: 6h
-  #     arrivalRate: 3
-  #     name: Bulk of test
+    - duration: 1800
+      arrivalRate: 20
+      name: Double the load
+    - duration: 1800
+      arrivalRate: 30
+      name: triple the load
+    # - duration: 1h
+    #   arrivalRate: 2
+    #   name: First Hour
+    # - duration: 6h
+    #   arrivalRate: 3
+    #   name: Bulk of test
   # # Load & configure a couple of useful plugins
   # # https://docs.art/reference/extensions
   plugins:
@@ -52,7 +52,7 @@ scenarios:
           url: /listings/list
           expect:
             - statusCode: 201
-  # Approximately 30% of all VUs will run this scenario.
+  # # Approximately 30% of all VUs will run this scenario.
   - name: get an individual listing
     weight: 4
     flow:
