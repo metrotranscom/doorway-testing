@@ -10,10 +10,10 @@ config:
       - "email"
       - "password"
   phases:
-    - duration: "9h"
+    - duration: "3h"
       arrivalRate: 1
       maxVusers: 100
-      rampTo: 100
+      rampTo: 30
       name: RampUp
     # - duration: 1800
     #   arrivalRate: 20
