@@ -46,26 +46,12 @@ config:
     url: "{{ $env.URL }}"
     listingId: "{{ $env.LISTING }}"
 scenarios:
-  # Approximately 60% of all VUs will run this scenario.
-  - name: get all listings
-    weight: 5
+  - name: Apply for listing
     flow:
       - post:
           url: /listings/list
           expect:
             - statusCode: 201
-  # # Approximately 30% of all VUs will run this scenario.
-  - name: get an individual listing
-    weight: 4
-    flow:
-      - get:
-          url: /listings/{{ listingId }}
-          expect:
-            - statusCode: 200
-  # Approximately 10% of all VUs will run this scenario.
-  - name: Apply for listing
-    weight: 2
-    flow:
       - get:
           url: /listings/{{ listingId }}
           expect:
