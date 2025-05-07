@@ -58,11 +58,10 @@ scenarios:
     flow:
       - post:
           url: /listings/combined
-          body:
-            json:
-              filter:
-                $comparison: "="
-                bedrooms: 2
+          json:
+            filter:
+              $comparison: "="
+              bedrooms: 2
           expect:
             - statusCode: 201
       # - get:
