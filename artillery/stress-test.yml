@@ -10,7 +10,7 @@ config:
       - "email"
       - "password"
   phases:
-    - duration: "3h"
+    - duration: "5m"
       arrivalRate: 1
       maxVusers: 100
       rampTo: 30
@@ -46,30 +46,43 @@ config:
     url: "{{ $env.URL }}"
     listingId: "{{ $env.LISTING }}"
 scenarios:
-  - name: Apply for listing
+  - name: Get combined listings
+    weight: 8
     flow:
       - post:
-          url: /listings/list
+          url: /listings/combined
           expect:
             - statusCode: 201
-      - get:
-          url: /listings/{{ listingId }}
-          expect:
-            - statusCode: 200
+  - name: Get combined listings with a 2BR filter
+    weight: 2
+    flow:
       - post:
-          url: /auth/login
-          json:
-            email: "{{ email }}"
-            password: "{{ password }}"
-            expect:
-              - statusCode: 200
-      - post:
-          url: /applications
-          beforeRequest:
-            - generateApplication
-          capture:
-            json: $.body
-            as: body
-          log: "{{ body }}"
+          url: /listings/combined
+          body:
+            json:
+              filter:
+                $comparison: "="
+                bedrooms: 2
           expect:
             - statusCode: 201
+      # - get:
+      #     url: /listings/{{ listingId }}
+      #     expect:
+      #       - statusCode: 200
+      # - post:
+      #     url: /auth/login
+      #     json:
+      #       email: "{{ email }}"
+      #       password: "{{ password }}"
+      #       expect:
+      #         - statusCode: 200
+      # - post:
+      #     url: /applications
+      #     beforeRequest:
+      #       - generateApplication
+      #     capture:
+      #       json: $.body
+      #       as: body
+      #     log: "{{ body }}"
+      #     expect:
+      #       - statusCode: 201
