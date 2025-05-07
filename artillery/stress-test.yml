@@ -60,8 +60,9 @@ scenarios:
           url: /listings/combined
           json:
             filter:
-              $comparison: "="
-              bedrooms: 2
+              - json:
+                $comparison: "="
+                bedrooms: 2
           expect:
             - statusCode: 201
       # - get:
