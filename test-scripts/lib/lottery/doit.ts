@@ -8,7 +8,7 @@ import { ListingsInterface } from "../listings";
 async function sendthem() {
   dotenv.config();
   const applicationCount = 1000;
-  const listingId = "a6ee82af-1f00-4999-8f14-d2b2abdae57a";
+  const listingId = process.env.LISTING_ID||"undefined";
   const url =
     process.env.DOORWAY_URL != undefined ? process.env.DOORWAY_URL : "EMPTY";
   const user =

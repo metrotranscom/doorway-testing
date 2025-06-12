@@ -10,7 +10,7 @@ export class DoorwayFakeApplications {
   doorwayLogin: DoorwayLogin;
   url: string;
   passkey: string;
-  maxListings: number;
+
   logger: typeof instance;
   user: string;
   password: string;
