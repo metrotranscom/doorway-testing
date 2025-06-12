@@ -1,14 +1,13 @@
 import { faker } from "@faker-js/faker";
 import * as dotenv from "dotenv";
-import { Application, ApplicationSubmissionTypeEnum } from "../apioutput";
+import { Application, ApplicationSubmissionTypeEnum, Listing } from "../apioutput";
 import { DoorwayInterface } from "../doorway-interface";
 import { FakeApplication } from "../fake-application";
 import { DoorwayFakeApplications } from "../fake-applications";
 import { ListingsInterface } from "../listings";
 async function sendthem() {
   dotenv.config();
-  const applicationCount = 1000;
-  const listingId = process.env.LISTING_ID||"undefined";
+  const applicationCount = Number(process.env.APPLICATION_COUNT)||1000;
   const url =
     process.env.DOORWAY_URL != undefined ? process.env.DOORWAY_URL : "EMPTY";
   const user =
@@ -25,7 +24,12 @@ async function sendthem() {
   }
   const doorway = new DoorwayFakeApplications(user, password, url, "passkey");
   const listings = new ListingsInterface(user, password, url, "passkey");
-  const listing = await listings.getListing(listingId);
+  let listing: Listing;
+  if (process.env.LISTING_ID != undefined) {
+    listing = await listings.getListing(process.env.LISTING_ID);
+  } else {
+    listing = (await listings.listingMatcher("Elm Village"))
+  }
   for (var i = 0; i < applicationCount; i++) {
     const app: FakeApplication = new FakeApplication(
       listing.id,
