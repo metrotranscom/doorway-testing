@@ -20,6 +20,7 @@ async function sendthem() {
     );
     throw new Error("Missing Environment Variables");
   }
+  console.log(`Sending ${applicationCount} applications to ${url} as ${user}`);
   const doorway = new DoorwayFakeApplications(user, password, url, "passkey");
   const listings = new ListingsInterface(user, password, url, "passkey");
   let listing: Listing;

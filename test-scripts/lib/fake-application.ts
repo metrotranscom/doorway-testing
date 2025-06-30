@@ -68,12 +68,10 @@ export class FakeApplication implements ApplicationCreate {
     } else {
       for (var i = 0; i < totalPrefs; i++) {
         const listingPref = prefs[i];
-
           appPrefs.push({
             multiselectQuestionId: listingPref.multiselectQuestions.id,
             claimed: false,
             key: listingPref.multiselectQuestions.text,
-
             options: [
               {
                 key: listingPref.multiselectQuestions.optOutText!= undefined? listingPref.multiselectQuestions.optOutText:listingPref.multiselectQuestions.options![0].text,
