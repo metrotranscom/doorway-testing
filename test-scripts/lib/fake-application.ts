@@ -73,9 +73,10 @@ export class FakeApplication implements ApplicationCreate {
             multiselectQuestionId: listingPref.multiselectQuestions.id,
             claimed: false,
             key: listingPref.multiselectQuestions.text,
+
             options: [
               {
-                key: listingPref.multiselectQuestions.options![0].text,
+                key: listingPref.multiselectQuestions.optOutText!= undefined? listingPref.multiselectQuestions.optOutText:listingPref.multiselectQuestions.options![0].text,
                 checked: false,
               },
             ],
