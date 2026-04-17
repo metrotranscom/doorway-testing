@@ -43,6 +43,7 @@ export class FakeApplication implements ApplicationCreate {
   householdStudent?: boolean;
   sendMailToMailingAddress?: boolean;
   constructor(listingId: string, prefs: ListingMultiselectQuestion[]) {
+
     const totalPrefs = prefs.length;
     const hasPrefs = faker.number.int({ min: 0, max: 100 });
     const appPrefs: ApplicationMultiselectQuestion[] = [];
@@ -132,7 +133,8 @@ export class FakeApplication implements ApplicationCreate {
       },
     };
     this.listings = { id: listingId };
-    this.householdSize = faker.number.int({ max: 8, min: 1 });
+    const maxFamilySize = process.env.MAX_FAMILY_SIZE != undefined ? Number(process.env.MAX_FAMILY_SIZE) : 5;
+    this.householdSize = faker.number.int({ max: maxFamilySize, min: 1 });
     const race = ["black", "white", "asian"];
     const sexualOrientation = [
       "straightHeterosexual",
