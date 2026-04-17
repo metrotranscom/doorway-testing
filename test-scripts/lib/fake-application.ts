@@ -68,27 +68,23 @@ export class FakeApplication implements ApplicationCreate {
     } else {
       for (var i = 0; i < totalPrefs; i++) {
         const listingPref = prefs[i];
-          appPrefs.push({
-            multiselectQuestionId: listingPref.multiselectQuestions.id,
-            claimed: false,
-            key: listingPref.multiselectQuestions.text,
-            options: [
-              {
-                key: listingPref.multiselectQuestions.optOutText!= undefined? listingPref.multiselectQuestions.optOutText:listingPref.multiselectQuestions.options![0].text,
-                checked: false,
-              },
-            ],
-          });
+        appPrefs.push({
+          multiselectQuestionId: listingPref.multiselectQuestions.id,
+          claimed: false,
+          key: listingPref.multiselectQuestions.text,
+          options: [
+            {
+              key: listingPref.multiselectQuestions.optOutText != undefined ? listingPref.multiselectQuestions.optOutText : listingPref.multiselectQuestions.options![0].text,
+              checked: false,
+            },
+          ],
+        });
       }
-
     }
     this.status = ApplicationStatusEnum.Submitted;
     const isItPaper = faker.number.int({ min: 0, max: 100 });
     // Estimating 1% of applications to be paper
-    this.submissionType =
-      isItPaper > 99
-        ? ApplicationSubmissionTypeEnum.Paper
-        : ApplicationSubmissionTypeEnum.Electronical;
+    this.submissionType = ApplicationSubmissionTypeEnum.Electronical;
     this.additionalPhone = false;
     this.additionalPhoneNumber = faker.string.numeric({ length: 10 });
     this.additionalPhoneNumberType = "home";

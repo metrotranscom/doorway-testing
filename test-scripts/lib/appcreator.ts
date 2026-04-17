@@ -5,7 +5,8 @@ import { DoorwayFakeApplications } from "./fake-applications";
 import { ListingsInterface } from "./listings";
 async function sendthem() {
   dotenv.config();
-  const applicationCount = Number(process.env.APPLICATION_COUNT)||1000;
+  const applicationCount = Number(process.env.APPLICATION_COUNT) || 1000;
+  const lotsOfDups = process.env.LOTS_OF_DUPS == "true" ? true : false;
   const url =
     process.env.DOORWAY_URL != undefined ? process.env.DOORWAY_URL : "EMPTY";
   const user =
@@ -35,6 +36,11 @@ async function sendthem() {
       listing.listingMultiselectQuestions!,
     );
     await doorway.submit(app);
+    if (lotsOfDups) {
+      await doorway.submit(app);
+      await doorway.submit(app);
+      await doorway.submit(app);
+    }
   }
 }
 
