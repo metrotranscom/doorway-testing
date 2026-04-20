@@ -134,7 +134,7 @@ export class FakeApplication implements ApplicationCreate {
     };
     this.listings = { id: listingId };
     const maxFamilySize = process.env.MAX_FAMILY_SIZE != undefined ? Number(process.env.MAX_FAMILY_SIZE) : 5;
-    this.householdSize = faker.number.int({ max: maxFamilySize, min: 1 });
+    this.householdSize = faker.number.int({ max: maxFamilySize, min: 0 });
     const race = ["black", "white", "asian"];
     const sexualOrientation = [
       "straightHeterosexual",
